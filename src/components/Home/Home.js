@@ -7,7 +7,6 @@ import CssBaseline from "@mui/material/CssBaseline"
 import IconButton from "@mui/material/IconButton"
 import Toolbar from "@mui/material/Toolbar"
 import MenuIcon from "@mui/icons-material/Menu"
-import Button from "@mui/material/Button"
 import Grid from "@mui/material/Grid"
 import Typography from "@mui/material/Typography"
 import Divider from "@mui/material/Divider"
@@ -18,6 +17,7 @@ import GroupIcon from '@mui/icons-material/Group';
 import RuleFolderIcon from '@mui/icons-material/RuleFolder';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import TopicIcon from '@mui/icons-material/Topic';
+import LogoutIcon from '@mui/icons-material/Logout';
 import { ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 import MembersTable from "./MembersTable";
 import PondInsurance from "./PondInsurance";
@@ -107,6 +107,7 @@ const Home = () => {
   const handleDrawerOpen = () => setOpen(true);
   const handleDrawerClose = () => setOpen(false);
   const [active, setActive] = useState("");
+
   const handleSignOut = () => {
     setUser(null)
     navigate('/')
@@ -115,7 +116,6 @@ const Home = () => {
     if (token) {
       setUser(decodedToken)
     }
-
   },[token,decodedToken])
 
   if (!token) {
@@ -133,8 +133,11 @@ const Home = () => {
       case "Monthly Statements":
         setActive(<Statements />)
         break;
-      default:
+      case "Rules & Regulations":
         setActive(<Rules />)
+        break;
+      default:
+        handleSignOut()
         break;
     }
   }
@@ -151,7 +154,6 @@ const Home = () => {
                         <Typography variant="h6" noWrap component="div">
                             {user && <>Welcome {user.name}</>}
                         </Typography>
-                        <Button variant="contained" color="error" onClick={handleSignOut}>Sign Out</Button>
                     </Grid>
                 </Toolbar>
             </AppBar>
@@ -163,7 +165,7 @@ const Home = () => {
                 </DrawerHeader>
                 <Divider />
                 <List>
-                    {[{ title: "Members", icon: <GroupIcon />}, { title: "Pond Insurance", icon: <TopicIcon /> }, { title: "Monthly Statements", icon: <AccountBalanceIcon /> }, { title: "Rules & Regulations", icon: <RuleFolderIcon /> }].map((text,index) => (
+                    {[{ title: "Members", icon: <GroupIcon />}, { title: "Pond Insurance", icon: <TopicIcon /> }, { title: "Monthly Statements", icon: <AccountBalanceIcon /> }, { title: "Rules & Regulations", icon: <RuleFolderIcon /> }, { title: "Sign Out", icon: <LogoutIcon />, display: true }].map((text,index) => (
                         <ListItem key={text.title} disablePadding sx={{ display: 'block' }} onClick={() => handleActive(text.title)}>
                             <ListItemButton sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5 }}>
                                 <ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center' }}>
