@@ -18,9 +18,10 @@ const Login = ({ setToken }) => {
         const response = await login(formData)
         if (response.message) {
             return setError({...error, display: true, message: response.message})
+        } else {
+            setToken(response)
+            navigate("/home")
         }
-        setToken(response)
-        navigate("/home")
     }
 
     return (
