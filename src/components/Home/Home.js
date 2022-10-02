@@ -100,7 +100,7 @@ const Home = () => {
   const token = useContext(UserContext)
   const { decodedToken } = useJwt(token)
   const [user, setUser] = useState(null);
-
+  const [width, setWidth] = useState(window.innerWidth)
   const theme = useTheme();
   const [open, setOpen] = useState(false);
 
@@ -116,6 +116,10 @@ const Home = () => {
     if (token) {
       setUser(decodedToken)
     }
+    const handleWindowResize = () => setWidth(window.innerWidth)
+    window.addEventListener("resize", handleWindowResize);
+    
+    return () => window.removeEventListener("resize", handleWindowResize);
   },[token,decodedToken])
 
   if (!token) {
@@ -123,6 +127,7 @@ const Home = () => {
   }
 
   const handleActive = (title) => {
+    width < 800 && setOpen(false)
     switch (title) {
       case "Members":
         setActive(<MembersTable />)
