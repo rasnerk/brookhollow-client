@@ -116,8 +116,10 @@ const Home = () => {
     if (token) {
       setUser(decodedToken)
     }
-    const handleWindowResize = () => setWidth(window.innerWidth)
-    window.addEventListener("resize", handleWindowResize);
+    const handleWindowResize = () => {
+      setWidth(window.innerWidth);
+    }
+      window.addEventListener("resize", handleWindowResize);
     
     return () => window.removeEventListener("resize", handleWindowResize);
   },[token,decodedToken])
@@ -162,26 +164,26 @@ const Home = () => {
                     </Grid>
                 </Toolbar>
             </AppBar>
-            <Drawer variant="permanent" open={open}>
+            <Drawer variant="permanent" open={open} sx={{...(width > 800 ? { display: "" } : open ? { display: "" } : {display: "none" } ) }}>
                 <DrawerHeader>
-                    <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-                    </IconButton>
+                  <IconButton onClick={handleDrawerClose}>
+                    {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+                  </IconButton>
                 </DrawerHeader>
                 <Divider />
                 <List>
-                    {[{ title: "Members", icon: <GroupIcon />}, { title: "Pond Insurance", icon: <TopicIcon /> }, { title: "Monthly Statements", icon: <AccountBalanceIcon /> }, { title: "Rules & Regulations", icon: <RuleFolderIcon /> }, { title: "Sign Out", icon: <LogoutIcon />, display: true }].map((text,index) => (
-                        <ListItem key={text.title} disablePadding sx={{ display: 'block' }} onClick={() => handleActive(text.title)}>
-                            <ListItemButton sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5 }}>
-                                <ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center' }}>
-                                    {text.icon}
-                                </ListItemIcon>
-                                <ListItemText primary={text.title} sx={{ opacity: open ? 1 : 0 }} />
-                            </ListItemButton>
-                        </ListItem>
-                    ))}
+                  {[{ title: "Members", icon: <GroupIcon /> }, { title: "Pond Insurance", icon: <TopicIcon /> }, { title: "Monthly Statements", icon: <AccountBalanceIcon /> }, { title: "Rules & Regulations", icon: <RuleFolderIcon /> }, { title: "Sign Out", icon: <LogoutIcon />, display: true }].map((text, index) => (
+                    <ListItem key={text.title} disablePadding sx={{ display: 'block' }} onClick={() => handleActive(text.title)}>
+                      <ListItemButton sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5 }}>
+                        <ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center' }}>
+                          {text.icon}
+                        </ListItemIcon>
+                        <ListItemText primary={text.title} sx={{ opacity: open ? 1 : 0 }} />
+                      </ListItemButton>
+                    </ListItem>
+                  ))}
                 </List>
-            </Drawer>
+              </Drawer>
             <Box component="main" sx={{ flexGrow: 1, pt: 10 }}>
               {active}
             </Box>
