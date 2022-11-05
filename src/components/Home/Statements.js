@@ -1,7 +1,8 @@
+import Alert from "@mui/material/Alert"
 const Statements = () => {
     return (
         <>
-            Monthly Bank Statements...
+            <Alert severity="error">Monthly Bank Statements — Currently Unavailable!</Alert>
         </>
     )
 }

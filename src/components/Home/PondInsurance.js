@@ -1,7 +1,8 @@
+import Alert from "@mui/material/Alert"
 const PondInsurance = () => {
     return (
         <>
-            Pond Insurance Documents
+            <Alert severity="error">Pond Insurance Documents — Currently Unavailable!</Alert>
         </>
     )
 }
