@@ -18,11 +18,13 @@ import RuleFolderIcon from '@mui/icons-material/RuleFolder';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import TopicIcon from '@mui/icons-material/Topic';
 import LogoutIcon from '@mui/icons-material/Logout';
+import ArticleIcon from '@mui/icons-material/Article';
 import { ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 import MembersTable from "./MembersTable";
 import PondInsurance from "./PondInsurance";
 import Rules from "./Rules";
 import Statements from "./Statements";
+import Taxes from "./Taxes";
 import { UserContext } from "../UserContext/UserContext";
 import { useJwt } from "react-jwt";
 import { Navigate, useNavigate } from "react-router-dom";
@@ -143,6 +145,9 @@ const Home = () => {
       case "Rules & Regulations":
         setActive(<Rules />)
         break;
+      case "Tax Documents":
+        setActive(<Taxes />)
+        break;
       default:
         handleSignOut()
         break;
@@ -172,7 +177,7 @@ const Home = () => {
                 </DrawerHeader>
                 <Divider />
                 <List>
-                  {[{ title: "Members", icon: <GroupIcon /> }, { title: "Pond Insurance", icon: <TopicIcon /> }, { title: "Monthly Statements", icon: <AccountBalanceIcon /> }, { title: "Rules & Regulations", icon: <RuleFolderIcon /> }, { title: "Sign Out", icon: <LogoutIcon />, display: true }].map((text, index) => (
+                  {[{ title: "Members", icon: <GroupIcon /> }, { title: "Pond Insurance", icon: <TopicIcon /> }, { title: "Monthly Statements", icon: <AccountBalanceIcon /> }, { title: "Rules & Regulations", icon: <RuleFolderIcon /> }, { title: "Tax Documents", icon: <ArticleIcon /> }, { title: "Sign Out", icon: <LogoutIcon />, display: true }].map((text, index) => (
                     <ListItem key={text.title} disablePadding sx={{ display: 'block' }} onClick={() => handleActive(text.title)}>
                       <ListItemButton sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5 }}>
                         <ListItemIcon sx={{ minWidth: 0, mr: open ? 3 : 'auto', justifyContent: 'center' }}>

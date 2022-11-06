@@ -19,3 +19,12 @@ export const login = async (credentials) => {
         return error.response.data
     }
 }
+
+export const fetchTaxes = async () => {
+    try {
+        const taxes = await axios.get(`${baseURL}/tax`)
+        return taxes.data;
+    } catch (error) {
+        return error
+    }
+}
