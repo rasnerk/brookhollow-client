@@ -8,17 +8,22 @@ import LockOutlined from "@mui/icons-material/LockOutlined"
 import { useState } from "react"
 import { login } from "../../lib"
 import { useNavigate } from "react-router-dom"
+import { CircularProgress } from "@mui/material"
 
 const Login = ({ setToken }) => {
     const navigate = useNavigate()
     const [formData, setFormData] = useState({ email: "", password: "" })
     const [error,setError] = useState({ display: false, message: "" })
+    const [loadingProgress, setLoadingProgress] = useState('none')
     const handleSubmit = async (e) => {
         e.preventDefault()
+        setLoadingProgress('flex')
         const response = await login(formData)
         if (response.message) {
+            setLoadingProgress('none')
             return setError({...error, display: true, message: response.message})
         } else {
+            setLoadingProgress('none')
             setToken(response)
             navigate("/home")
         }
@@ -26,6 +31,9 @@ const Login = ({ setToken }) => {
 
     return (
         <Container component='main' maxWidth='xs'>
+            <Box sx={{display: loadingProgress, justifyContent: "center"}}>
+                <CircularProgress/>
+            </Box>
             <Box sx={{marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
                 <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                     <LockOutlined></LockOutlined>
