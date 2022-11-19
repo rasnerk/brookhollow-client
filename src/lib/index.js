@@ -28,3 +28,12 @@ export const fetchTaxes = async () => {
         return error
     }
 }
+
+export const fetchStatements = async () => {
+    try {
+        const statements = await axios.get(`${baseURL}/statements`)
+        return statements.data;
+    } catch (error) {
+        return error
+    }
+}

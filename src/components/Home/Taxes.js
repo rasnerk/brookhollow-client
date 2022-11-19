@@ -15,11 +15,14 @@ const Taxes = () => {
         fetchData()
     },[])
     return (
-        <div style={{display: "flex", justifyContent: "center", flexWrap: "wrap"}}>
-            {taxDocs.length > 0 && taxDocs.map(doc => (
-                <Button sx={{margin: 1}} key={doc.name} variant="contained" onClick={() => handleShow(doc.file)}>{doc.name}</Button>
-            ))}
-        </div>
+        <>
+            <h2 style={{textAlign: "center"}}><u>Tax Documents</u></h2>
+            <div style={{display: "flex", justifyContent: "center", flexWrap: "wrap"}}>
+                {taxDocs.length > 0 && taxDocs.map(doc => (
+                    <Button sx={{margin: 1}} key={doc.name} variant="contained" onClick={() => handleShow(doc.file)}>{doc.name}</Button>
+                ))}
+            </div>
+        </>
     )
 }
 

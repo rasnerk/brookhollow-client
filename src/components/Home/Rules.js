@@ -7,9 +7,12 @@ const Rules = () => {
     }
     
     return (
-        <div style={{display: "flex", justifyContent: "center"}}>
-            <Button variant="contained" onClick={handleRulesShow}>View Rules & Regulations</Button>
-        </div>
+        <>
+            <h2 style={{textAlign: "center"}}><u>Rules & Regulations</u></h2>
+            <div style={{display: "flex", justifyContent: "center"}}>
+                <Button variant="contained" onClick={handleRulesShow}>View Rules & Regulations</Button>
+            </div>
+        </>
     )
 }
 
